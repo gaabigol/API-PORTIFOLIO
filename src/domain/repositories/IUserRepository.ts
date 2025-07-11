@@ -4,4 +4,5 @@ export interface IUserRepository {
     findAll(): Promise<Partial<User[]>>
     findById(id: number): Promise<Partial<User> | null>
     create(user: Omit<User, 'id'>): Promise<User>
+    verifyEmail(email: string): Promise<User | null>
 }

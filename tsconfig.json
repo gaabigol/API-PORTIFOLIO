@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                             // 🔁 Melhor compatibilidade moderna (ex: nullish coalescing)
+    "target": "ES2020",                           
     "module": "commonjs",
-    "lib": ["ES2020"],                              // ✅ Suporte a novas APIs como Intl, Promise.allSettled etc.
+    "lib": ["ES2020"],                            
     "strict": true,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
@@ -12,8 +12,13 @@
     "experimentalDecorators": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "resolveJsonModule": true                       // ✅ Permite importar arquivos .json
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["node", "express"]                     
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "types/**/*"
+  ],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

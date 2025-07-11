@@ -15,17 +15,24 @@ export class UserRepository implements IUserRepository {
 
     async findAll(): Promise<User[]> {
         const users = await this.repo.find()
-        return users.map((u) => new User(u.id, u.name, u.email))
+        return users.map((u) => new User(u.id, u.name, u.email, ''))
     }
 
     async findById(id: number): Promise<User | null> {
         const user = await this.repo.findOneBy({ id })
-        return user ? new User(user.id, user.name, user.email) : null
+        return user ? new User(user.id, user.name, user.email, '') : null
     }
 
     async create(data: Omit<User, 'id'>): Promise<User> {
         const newUser = this.repo.create(data)
         const saved = await this.repo.save(newUser)
-        return new User(saved.id, saved.name, saved.email)
+        return new User(saved.id, saved.name, saved.email, '')
+    }
+
+    async verifyEmail(email: string): Promise<User | null> {
+        const user = await this.repo.findOne({ where: { email } })
+        return user
+            ? new User(user.id, user.name, user.email, user.password)
+            : null
     }
 }

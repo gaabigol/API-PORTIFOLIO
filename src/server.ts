@@ -1,7 +1,10 @@
 import 'reflect-metadata'
 import app from './app'
 import { AppDataSource } from './infrastructure/persistence/typeorm/dataSource'
+import dotenv from 'dotenv'
 
+
+dotenv.config()
 AppDataSource.initialize()
     .then(() => {
         console.log('Database connected')

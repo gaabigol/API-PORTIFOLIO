@@ -11,6 +11,7 @@ export class ErrorHandlerMiddleware {
         if (error instanceof HttpError) {
             return res.status(error.statusCode).json(error.toJSON())
         }
+
         return res.status(500).json({
             statusCode: 500,
             message: 'An unexpected error occurred',
