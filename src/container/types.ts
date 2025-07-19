@@ -8,5 +8,8 @@ const TYPES = {
     AuthMiddleware: Symbol.for('AuthMiddleware'),
     GetUserUseCase: Symbol.for('GetUserUseCase'),
     AuthController: Symbol.for('AuthController'),
+    IArticleRepository: Symbol.for('IArticleRepository'),
+    GetArticleUseCase: Symbol.for('GetArticleUseCase'),
+    GetSingleArticleUseCase: Symbol.for('GetSingleArticleUseCase'),
 }
 export default TYPES

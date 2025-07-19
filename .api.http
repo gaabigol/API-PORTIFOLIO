@@ -1,23 +1,24 @@
 ### 👉👉👉 JWT login 👈👈👈
 
-# @name jwt_login
-POST http://localhost:3000/jwt/login
+# @name auth
+POST http://localhost:3000/auth
 Content-Type: application/json
 Origin: http://localhost:3000
 
 {
-  "email": "admin@user.com",
-  "password": "admin"
+  "email": "g",
+  "password": ""
 }
 
 ###
 
-@token = {{ jwt_login.response.body.token }}
+@token = {{ auth.response.body.token }}
 
 ### 👉👉👉 Ge me 👈👈👈
 
-GET http://localhost:3000/jwt/me
+GET http://localhost:3000
 Authorization: Bearer {{ token }}
+Origin: http://localhost:3000
 
 ### 👉👉👉 Session login 👈👈👈
 

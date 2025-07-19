@@ -12,6 +12,10 @@ import { AuthUsecase } from '../usecases/auth/authUsecase'
 import { AuthMiddleware } from '../shared/middleware/authMiddleware'
 import { GetUserUseCase } from '../usecases/user/getUserUseCase'
 import { AuthController } from '../presentation/controllers/authController'
+import { IArticleRepository } from '../domain/repositories/IArticleRepository'
+import { ArticleRepository } from '../infrastructure/persistence/repositories/ArticleRepository'
+import { GetArticleUseCase } from '../usecases/article/getArticleUsecase'
+import { GetSingleArticleUseCase } from '../usecases/article/getSingleArticleUsecase'
 
 const container = new Container()
 
@@ -24,6 +28,10 @@ container.bind<AuthUsecase>(TYPES.AuthUsecase).to(AuthUsecase)
 container.bind<AuthMiddleware>(TYPES.AuthMiddleware).to(AuthMiddleware)
 container.bind<GetUserUseCase>(TYPES.GetUserUseCase).to(GetUserUseCase)
 container.bind<AuthController>(TYPES.AuthController).to(AuthController)
-
+container.bind<GetSingleArticleUseCase>(TYPES.GetSingleArticleUseCase).to(GetSingleArticleUseCase)
+container
+    .bind<IArticleRepository>(TYPES.IArticleRepository)
+    .to(ArticleRepository)
+container.bind<GetArticleUseCase>(TYPES.GetArticleUseCase).to(GetArticleUseCase)
 
 export { container }
