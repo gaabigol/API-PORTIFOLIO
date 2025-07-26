@@ -4,6 +4,8 @@ import { AppDataSource } from '../typeorm/dataSource'
 import { IArticleRepository } from '../../../domain/repositories/IArticleRepository'
 import { ArticleEntity } from '../../entities/ArticleEntity'
 import { Article } from '../../../domain/entities/Article'
+import { ArticleMapper } from '../../mappers/articleMapper'
+
 
 @injectable()
 export class ArticleRepository implements IArticleRepository {
@@ -13,7 +15,7 @@ export class ArticleRepository implements IArticleRepository {
         this.repo = AppDataSource.getRepository(ArticleEntity)
     }
 
-    async findAll(
+    public async findAll(
         data: {
             page: number
             limit: number
@@ -25,12 +27,35 @@ export class ArticleRepository implements IArticleRepository {
             skip: (page - 1) * limit,
             take: limit,
         })
-        return { articles, total }
+        return {
+            articles: ArticleMapper.toDomainArray(articles),
+            total,
+        }
     }
 
-    async findBySlug(slug: string): Promise<Article | null> {
-        return this.repo.findOneBy({
+    public async findBySlug(slug: string): Promise<Article | null> {
+        const article = await this.repo.findOneBy({
             uuid: slug,
         })
+        return article ? ArticleMapper.toDomain(article) : null
+    }
+
+    public async create(data: Partial<Article>): Promise<Article> {
+        const newArticle = this.repo.create(data)
+        const saved = await this.repo.save(newArticle)
+        return ArticleMapper.toDomain(saved)
+    }
+
+    public async update(
+        article: Article,
+        data: Partial<Article>
+    ): Promise<Article> {
+        Object.assign(article, data)
+        const updatedArticle = await this.repo.save(article)
+        return ArticleMapper.toDomain(updatedArticle)
+    }
+
+    public async delete(slug: string): Promise<void> {
+        await this.repo.delete({ uuid: slug })
     }
 }

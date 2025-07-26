@@ -8,6 +8,7 @@ export class ErrorHandlerMiddleware {
         res: Response,
         next: NextFunction
     ) {
+  
         if (error instanceof HttpError) {
             return res.status(error.statusCode).json(error.toJSON())
         }
@@ -16,6 +17,7 @@ export class ErrorHandlerMiddleware {
             statusCode: 500,
             message: 'An unexpected error occurred',
             title: 'Internal Server Error',
+            details: error.message,
         })
     }
 }

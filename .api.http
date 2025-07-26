@@ -1,18 +1,44 @@
 ### 👉👉👉 JWT login 👈👈👈
 
 # @name auth
-POST http://localhost:3000/auth
+POST http://localhost:3000/api/v1/auth
 Content-Type: application/json
 Origin: http://localhost:3000
 
 {
-  "email": "g",
-  "password": ""
+  "email": "gabigol",
+  "password": "9"
 }
 
 ###
 
 @token = {{ auth.response.body.token }}
+
+### @name createArticle
+POST http://localhost:3000/api/v1/admin/articles
+Authorization: Bearer {{ token }}
+Origin: http://localhost:3000
+Content-Type: application/json
+
+{
+  "title": "My First Article",
+  "excerpt": "This is a brief summary of my first article.",
+  "content": "This is the full content of my first article",
+  "tags": "technology, programming",
+  "category": "Tech",
+  "readTime": "5 minutes"
+}
+
+###
+
+
+###
+GET http://localhost:3000/api/v1/articles
+Origin: http://localhost:3000
+
+
+###
+
 
 ### 👉👉👉 Ge me 👈👈👈
 

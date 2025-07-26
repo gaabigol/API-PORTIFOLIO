@@ -18,17 +18,17 @@ export class ArticleResource extends Resource {
         const url = this.request.originalUrl.split('?')[0]
         const defaultLinks = {
             self: {
-                href: url + '/' + this.data.id,
+                href: `${url}/${this.data.uuid}`,
                 method: 'GET',
                 type: 'application/json',
             },
             update: {
-                href: url + '/' + this.data.id,
+                href: `${url}/${this.data.uuid}`,
                 method: 'PATCH',
                 type: 'application/json',
             },
             delete: {
-                href: url + '/' + this.data.id,
+                href: `${url}/${this.data.uuid}`,
                 method: 'DELETE',
             },
         }

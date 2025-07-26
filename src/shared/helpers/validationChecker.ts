@@ -9,10 +9,10 @@ export class ValidationChecker {
     ): Promise<NextFunction | void> {
         const errors = validateSync(dto)
         if (errors.length > 0) {
-            return next(
-                new UnprocessableEntityException('Unprocessable Entity', errors)
+            throw new UnprocessableEntityException(
+                'Unprocessable Entity',
+                errors
             )
         }
     }
 }
-

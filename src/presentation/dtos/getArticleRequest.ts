@@ -15,7 +15,7 @@ export class GetArticleRequest {
     limit?: number = 10
 
     constructor(data: any) {
-        this.page = data.page || 1
-        this.limit = data.limit || 10
+        this.page = +data.page || 1
+        this.limit = +data.limit || 10
     }
 }

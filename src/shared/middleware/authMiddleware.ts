@@ -15,7 +15,7 @@ export class AuthMiddleware {
         private readonly getUserUseCase: GetUserUseCase
     ) {}
 
-    private readonly protectedRoutes = ['/user']
+    private readonly protectedRoutes = ['/api/v1/admin/articles']
     public async authenticate(
         req: AuthenticatedRequest,
         res: Response,

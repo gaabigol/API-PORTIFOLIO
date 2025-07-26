@@ -28,17 +28,17 @@ export class ArticleEntity {
     @Column({ nullable: true })
     excerptEn: string
 
-    @Column()
+    @Column('text')
     content: string
 
-    @Column({ nullable: true })
+    @Column({ type: 'text', nullable: true })
     contentEn: string
 
-    @Column('json', { default: [] })
-    tags: string[]
+    @Column({ type: 'text', default: '[]' })
+    tags: string
 
-    @Column('json', { default: [] })
-    tagsEn: string[]
+    @Column({ type: 'text', default: '[]' })
+    tagsEn: string
 
     @Column()
     category: string
@@ -49,7 +49,10 @@ export class ArticleEntity {
     @Column({ nullable: true })
     readTime: string
 
-    @Column({ default: true })
+    @Column({ nullable: true })
+    image: string
+
+    @Column({ type: 'boolean', default: true })
     published: boolean
 
     @CreateDateColumn()

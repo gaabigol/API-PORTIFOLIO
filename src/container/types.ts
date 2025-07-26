@@ -11,5 +11,9 @@ const TYPES = {
     IArticleRepository: Symbol.for('IArticleRepository'),
     GetArticleUseCase: Symbol.for('GetArticleUseCase'),
     GetSingleArticleUseCase: Symbol.for('GetSingleArticleUseCase'),
+    ArticleController: Symbol.for('ArticleController'),
+    CreateArticleUseCase: Symbol.for('CreateArticleUseCase'),
+    UpdateArticleUseCase: Symbol.for('UpdateArticleUseCase'),
+    DeleteArticleUseCase: Symbol.for('DeleteArticleUseCase'),
 }
 export default TYPES
